@@ -2,17 +2,16 @@
 clear 
 function Formateo {
 clear
-read -n -4 -p "¿Cómo quiere llamar el dipositivo?" $DISP
+VAL='0'
+until [ $VAL = 3 ]; do
+read  -p "¿Cómo quiere llamar el dipositivo? " DISP 
 echo
-VAL=$(expr match "$DISP"[a-z][0-9])
-if [ $VAL = 4 ]; then
-momdisp;
-fdformat /dev/$DISP
-else 
-echo "No existe /dev/$DISP"
+VAL=$(expr match "$DISP" [f][d][0-1])
+done
 }
 RESPUESTA='0'
-until [ $RESPUESTA = "4" ] ;do clear
+until [ $RESPUESTA = "4" ] ;do 
+ clear
  cat <<-EOF 
 BUSCADOR DE USUARIOS
 1  Formatear
@@ -24,15 +23,15 @@ echo
 read -p 'Escoga una opcion ' RESPUESTA
 echo 
 case $RESPUESTA in 
-      1)Formateo
+      1)Formateo; sudo fdformat /dev/$DISP
       echo
       read -p 'Pulsa cualquier tecla para continuar ' PAUSA
       ;;
-       2)mount  /dev/$DISP/mnt
+       2)Formateo; sudo mount /dev/$DISP /mnt
       echo "Se ha montado el dispositivo"
       read -p 'Pulsa cualquier tecla para continuar ' PAUSA
       ;;
-       3)umount /dev/$DISP
+       3)Formateo; sudo umount /dev/$DISP
       echo "Se ha desmontado el dispositivo"
       read -p 'Pulsa cualquier tecla para continuar ' PAUSA
       ;;
