@@ -28,11 +28,11 @@ PATRON2=$PATRON2[a-z,A-Z," "]
 done
 VAL2=$(expr match "$APELLIDO1" "$PATRON2")
 if [ $VAL2 = $LON2 ] ;then
-echo "$APELLIDO1 es un nombre correcto"
+echo "$APELLIDO1 es un apellido correcto"
 echo
 read -p '' PAUSA
 else
-echo "$APELLIDO1 es un nombre incorrecto"
+echo "$APELLIDO1 es un apellido incorrecto"
 echo
 read -p '' PAUSA
 fi
@@ -44,15 +44,40 @@ PATRON3=$PATRON3[a-z,A-Z," "]
 done
 VAL3=$(expr match "$APELLIDO2" "$PATRON3")
 if [ $VAL3 = $LON3 ] ;then
-echo "$APELLIDO2 es un nombre correcto"
+echo "$APELLIDO2 es un segundo apellido correcto"
 echo
-read -p 'Pulsa cualquier tecla para acabar ' PAUSA
-clear
 else
-echo "$APELLIDO2 es un nombre incorrecto"
+echo "$APELLIDO2 es un segundo apellido incorrecto"
 echo
-read -p 'Pulsa cualquier tecla para acabar ' PAUSA
-clear
 fi
 }
+function CHECK2 {
+echo
+if [ $VAL1 = $LON1 ] ;then
+  if [ $VAL2 = $LON2 ] ;then
+    if [ $VAL3 = $LON3 ] ;then
+    echo "Te llamas $NOMBRE $APELLIDO1 $APELLIDO2 "
+    echo
+    echo "Tu nombre $NOMBRE $APELLIDO1 $APELLIDO2 es correcto"
+
+    else
+    echo "Te llamas $NOMBRE $APELLIDO1 $APELLIDO2 "
+    echo
+    echo "Tu apellido $APELLIDO2 es falso"
+    fi
+  else
+  echo "Te llamas $NOMBRE $APELLIDO1 $APELLIDO2 "
+  echo
+  echo "Tus apellidos $APELLIDO1 y $APELLIDO2 son falsos"
+  fi
+else
+echo "Te llamas $NOMBRE $APELLIDO1 $APELLIDO2 "
+echo
+echo "Tu nombre $NOMBRE $APELLIDO1 $APELLIDO2 es falso"
+fi
+echo
+read -p 'Pulsa cualquier tecla para acabar ' PAUSA
+clear
+}
 NombreCompletoVAL
+CHECK2
