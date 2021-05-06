@@ -52,25 +52,42 @@ else
 echo
 echo "El numero $c es incorrecto"
 echo
-sleep 1
 read -p 'Presiona cualquier tecla para acabar' PAUSA
 clear 
 fi
+}
+function CHEK_ECU {
+if [ $a = 0 ]; then
+   x3=$[-1*$c/$b]
+   echo "La solucíon es $x3 "  
+     else 
+     r=$(echo "$b*$b-4*$a*$c" | bc -l);
+       if [ $r = 0 ]; then  
+       x4=$[-$b/(2*$a)]
+       echo "La solucíon es $x4 " 
+         else   
+           if  test $r +-ge 0;then
+           e=$(echo "sqrt($r)" | bc -l | cut -c 1-1)
+ 
+           x1=$[(-$b + $e) / (2*$a) | bc -l ];
+           x2=$[(-$b - $e) / (2*$a) | bc -l ];
+
+          echo "La solucíon es $x1 y $x2 "
+          echo
+        else 
+          echo "no hay solucíon sencilla"
+        fi
+
+    fi
+
+  fi
 }
 CHECK;
 echo
 if [ $VAL1 = $LON ] ;then
   if [ $VAL2 = $LON2 ] ;then
     if [ $VAL3 = $LON3 ] ;then
-r=$[$b*$b-4*$a*$c];
-e=$(echo "sqrt($r)" | bc -l)
-d=$[ $e  | cut -c 1-4 ];
-
-x1=$[-$b + $d / (2*$a) | bc -l ];
-x2=$[-$b - $d / (2*$a) | bc -l ];
-
-echo "La solucíon es $x1 y $x2 $d "
-echo
+   CHEK_ECU;
     else
     echo "El numero $c es falso"
     echo
@@ -81,7 +98,7 @@ echo
   fi
 else
 echo
-echo "Los numeros $a $b $c es falso"
+echo "Los numeros $a $b $c son falso"
 fi
 echo
 read -p 'Pulsa cualquier tecla para acabar ' PAUSA
