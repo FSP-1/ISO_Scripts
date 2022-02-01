@@ -2,16 +2,17 @@
 clear
 function CopiaSeguridad {
 clear
-
-      read -p 'Indica el Nombre del Usuario que quiere hacer copia de Seguridad ' USU4
+read -p 'Indica el Nombre del Usuario que quiere hacer copia de Seguridad ' USU4
 cp -r /home/$USU4 /home/copias/$USU4
+echo ""
 echo "ls -l /home/copias"
 ls -l /home/copias
 }
 function Permiso {
+clear
 read -p "Indica que usuario quiere cambiar permiso " USU1
-read -p "Introduzca Archivo O Carpeta " RUTA
-chown $USU1 $RUTA
+read -p "Introduzca la ruta del Archivo O Carpeta " RUTA
+chown $USU1:$USU1 $RUTA
 ls -l $RUTA
 echo
 read -p 'Pulsa cualquier tecla para continuar ' PAUSA
@@ -45,7 +46,10 @@ sudo  useradd  -d /home/$USU -m  $USU
 
 echo "Añadele una contraseña al usuario $USU "
 passwd $USU 
+echo ""
 ls -l /home
+echo ""
+echo "El usuario $USU se ha añadido a tu maquina "
       echo
       read -p 'Pulsa cualquier tecla para continuar ' PAUSA
       ;;
@@ -161,9 +165,31 @@ done;;
 echo
 read -p 'Pulsa cualquier tecla para continuar ' PAUSA
 ;;
-6);;
-7);;
-8);;
+6)
+clear
+      echo 'Estos serían los usuarios conectados actualmente en el sistema ' 
+      who
+echo
+      read -p 'Pulsa cualquier tecla para continuar ' PAUSA
+;;
+7)
+clear
+     echo 'Este es el espacio libre de tus discos ' 
+      echo
+   df -h
+      sleep 1
+echo
+      read -p 'Pulsa cualquier tecla para continuar ' PAUSA
+;;
+8)
+clear
+      read -p 'Pon la IP o URL que quieras trazar la ruta ' ROUTE
+      echo
+      traceroute $ROUTE
+      sleep 1
+echo
+      read -p 'Pulsa cualquier tecla para continuar ' PAUSA
+;;
 9)clear
 echo "Adiós y gracias por su visita"
       echo
