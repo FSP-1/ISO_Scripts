@@ -2,7 +2,7 @@
 clear
 function CopiaSeguridad {
 # Creo una function llamada CopiaSeguridad donde me copia el directorio de trabajo del usuario que pongas en la carpeta Copia
-# Para que funcione se necesita antes crear la carpeta Copia en /home/
+# Para que funcione se necesita antes crear la carpeta Copia en /home/ y usar sudo al ejecutar el script --> sudo usuario.sh
 clear
 read -p 'Indica el Nombre del Usuario que quiere hacer copia de Seguridad ' USU4
 cp -r /home/$USU4 /home/copias/$USU4
